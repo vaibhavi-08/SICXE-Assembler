@@ -1,0 +1,22 @@
+--- SYMBOL TABLE ---
+
+:-	name:undefined	|address:0	|relative:00000 
+0:-	name:	|address:0	|relative:00000 
+REF1:-	name:REF1	|address:00000	|relative:00001 
+REF2:-	name:REF2	|address:00004	|relative:00001 
+REF3:-	name:REF3	|address:00007	|relative:00001 
+REF4:-	name:REF4	|address:00011	|relative:00001 
+VALA:-	name:VALA	|address:0000E	|relative:00001 
+
+--- LITERAL TABLE ---
+
+
+--- EXTREF TABLE ---
+
+VALB:-	name:VALB	|DEFAULT 
+VALC:-	name:VALC	|DEFAULT 
+
+--- EXTDEF TABLE ---
+
+VALA:-	name:VALA	|address:0000E	| 
+

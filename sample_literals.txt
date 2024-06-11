@@ -1,0 +1,46 @@
+COPY    START   0
+FIRST   STL     RETADR
+CLOOP	+JSUB   RDREC
+        LDA     LENGTH
+        COMP	#0
+        JEQ	    ENDFILL
+        +JSUB	WRREC
+        J	    CLOOP
+ENDFILL	LDA	    EOF
+        STA	    BUFFER
+        LDA	    #3
+        STA	    LENGTH
+        +JSUB	WRREC
+        J	    @RETADR
+RETADR	RESW	1
+LENGTH	RESW	1
+EOF	    WORD	C'EOF'
+BUFFER  RESB	4096
+MAXLEN	WORD	4096
+RDREC   CLEAR	X
+        CLEAR	A
+        CLEAR	S
+        LDT	    MAXLE
+RLOOP	TD	    =X'F1'
+        JEQ	    RLOOP
+        RD	    =X'F1'
+        COMPR	A, S
+        JEQ	    EXIT
+        +STCH	BUFFER, X
+        TIXR	T
+        JLT	    RLOOP
+EXIT	+STX	LENGTH
+        RSUB
+MAXLE	WORD	4096
+.        LTORG
+WRREC   CLEAR	X
+        +LDT	LENGTH
+WLOOP	TD	    OUTPUT
+        JEQ	    WLOOP
+        +LDCH	BUFFER, X
+        WD	    OUTPUT
+        TIXR	T
+        JLT	    WLOOP
+        RSUB
+OUTPUT  BYTE	X'05'
+        END	    FIRST
